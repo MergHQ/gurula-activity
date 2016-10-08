@@ -9,6 +9,7 @@
     "express": "^4.14.0",
     "jimp": "^0.2.27",
     "react": "^15.3.2",
+    "react-chartjs": "^0.8.0",
     "react-dom": "^15.3.2"
   },
   "scripts": {
