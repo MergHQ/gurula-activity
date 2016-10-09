@@ -10,4 +10,4 @@ server.get('/summary', (req, res) => {
   res.send(analyser.getStats());
 });
 
-server.listen(80);
+server.listen(8080);
