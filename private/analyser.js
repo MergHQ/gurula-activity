@@ -23,19 +23,12 @@ module.exports = function () {
           let r = img.bitmap.data[idx];
           let g = img.bitmap.data[idx + 1];
           let b = img.bitmap.data[idx + 2];
-
-          
           let sum = (r + g + b) / 3;
-          if (Math.abs(sum - avg) > 75 && Math.abs(sum - avg) < 125) {
-            s += sum * 2;
-          }
-
-          if (Math.abs(sum - avg) > 500) {
-            s += sum * 0.5;
-          }
-          s += sum;
+          if (Math.abs(sum - avg()) > 50 && Math.abs(sum - avg()) < 125) {
+            s += sum * 1.3;
+          } else s += sum;
         });
-        stats.push({ d: Math.floor(s) / 130500, time: d })
+        stats.push({ d: Math.floor(s) / 130500, time: d, })
       });
     } catch (e) {
       counsole.log(e);
@@ -50,6 +43,6 @@ module.exports = function () {
       i++;
     }
 
-    return s / i;
+    return (s / i);
   }
 };
