@@ -28,7 +28,7 @@ module.exports = function () {
             s += sum * 1.3;
           } else s += sum;
         });
-        stats.push({ d: Math.floor(s) / 130500, time: d, })
+        stats.push({ d: Math.floor(s) / 130500, time: d })
       });
     } catch (e) {
       counsole.log(e);
