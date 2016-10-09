@@ -29,6 +29,10 @@ module.exports = function () {
           if (Math.abs(sum - avg) > 75 && Math.abs(sum - avg) < 125) {
             s += sum * 2;
           }
+
+          if (Math.abs(sum - avg) > 500) {
+            s += sum * 0.5;
+          }
           s += sum;
         });
         stats.push({ d: Math.floor(s) / 130500, time: d })
@@ -41,7 +45,7 @@ module.exports = function () {
   function avg() {
     var i = 0;
     var s = 0;
-    for (var stat in stats) {
+    for (var stat of stats) {
       s += stat.d;
       i++;
     }

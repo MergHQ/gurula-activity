@@ -13,15 +13,27 @@ class GraphData extends Component {
 
   componentDidMount() {
     self = this;
-    fetch('http://localhost:8080/summary')
+    fetch('http://jallu.ml:1234/summary')
       .then((response) => response.json())
       .then((responseJson) => {
         var data = [];
         var dates = [];
-        for (var o of responseJson.result) {
-          data.push(o.d);
-          var d = new Date(o.time);
-          dates.push(d.getHours() + ':' + d.getMinutes());
+        for (var i = 0; i < 24; i++) {
+          var s = 0;
+          var iter = 0;
+          for (var o of responseJson.result) {
+            var h = new Date(o.time).getHours();
+            if (h === i) {
+              s += o.d;
+              iter++;
+            }
+          }
+          if (iter !== 0) {
+            data.push(s / iter);
+            dates.push(i);
+            s = 0;
+            iter = 0;
+          }
         }
         self.setState({
           data: {
