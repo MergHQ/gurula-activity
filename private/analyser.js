@@ -1,5 +1,4 @@
 'use strict';
-const needle = require('needle');
 const jimp = require('jimp');
 
 module.exports = function () {
