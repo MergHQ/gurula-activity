@@ -19,6 +19,7 @@ class GraphData extends Component {
         var data = [];
         var dates = [];
         for (var i = 0; i < 24; i++) {
+          var hour = (new Date(responseJson.result[0].time).getHours() + i) % 24;
           var s = 0;
           var iter = 0;
           for (var o of responseJson.result) {

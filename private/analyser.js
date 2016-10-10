@@ -13,6 +13,8 @@ module.exports = function () {
   analyse();
   setInterval(analyse, interval);
   function analyse() {
+    var start = Date.now();
+    var avg = calcAvg();
     try {
       jimp.read(URL, (err, img) => {
         if (err) throw err;
@@ -23,18 +25,19 @@ module.exports = function () {
           let g = img.bitmap.data[idx + 1];
           let b = img.bitmap.data[idx + 2];
           let sum = (r + g + b) / 3;
-          if (Math.abs(sum - avg()) > 50 && Math.abs(sum - avg()) < 125) {
+          if (Math.abs(sum - avg > 50 && Math.abs(sum - avg) < 125)) {
             s += sum * 1.3;
           } else s += sum;
         });
         stats.push({ d: Math.floor(s) / 130500, time: d })
+        console.log(Date.now() - start);
       });
     } catch (e) {
       counsole.log(e);
     }
   }
 
-  function avg() {
+  function calcAvg() {
     var i = 0;
     var s = 0;
     for (var stat of stats) {
