@@ -17,7 +17,7 @@ module.exports = function () {
     var avg = calcAvg();
     try {
       jimp.read(URL, (err, img) => {
-        if (err) throw err;
+        if (err) console.log(err);
         var d = Date.now();
         var s = 0;
         img.scan(319, 401, 1069, 575, (x, y, idx) => {
@@ -27,8 +27,8 @@ module.exports = function () {
           let sum = (r + g + b) / 3;
           let delta = Math.abs(sum - avg);
           if (delta > 50 && delta < 125) {
-            s += delta * 1.3;
-          } else s += delta;
+            s += sum * 1.3;
+          } else s += sum;
         });
         stats.push({ d: Math.floor(s) / 130500, time: d })
         console.log(Date.now() - start);
