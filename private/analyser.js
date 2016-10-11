@@ -25,9 +25,10 @@ module.exports = function () {
           let g = img.bitmap.data[idx + 1];
           let b = img.bitmap.data[idx + 2];
           let sum = (r + g + b) / 3;
-          if (Math.abs(sum - avg > 50 && Math.abs(sum - avg) < 125)) {
-            s += sum * 1.3;
-          } else s += sum;
+          let delta = Math.abs(sum - avg);
+          if (delta > 50 && delta < 125) {
+            s += delta * 1.3;
+          } else s += delta;
         });
         stats.push({ d: Math.floor(s) / 130500, time: d })
         console.log(Date.now() - start);
