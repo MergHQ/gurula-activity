@@ -5,13 +5,18 @@ module.exports = function () {
   const interval = 120000;
   const URL = 'http://haba.tko-aly.fi/kuvat/webcam2.jpg';
   var stats = [];
+  var completeStats = [];
 
   this.getStats = () => {
-    return JSON.stringify({result: stats});
+    return completeStats.length === 0 ? JSON.stringify({ result: stats }) : JSON.stringify({ result: completeStats })
   };
 
   analyse();
   setInterval(analyse, interval);
+  setInterval(() => {
+    completeStats = stats;
+    stats = [];
+  }, 86400000);
   function analyse() {
     var start = Date.now();
     var avg = calcAvg();
